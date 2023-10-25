@@ -12,21 +12,16 @@ public:
                     return false;
             }
         }
-
         for(int i = 0; i < L - 1; i++){
-            if(i >= 1 && nums[i] > nums[i+1] && nums[i+1] >= nums[i-1]){
+            if(i >= 1 && nums[i] > nums[i+1]){
                 count++;
-                // modify nums[i], how about change nums[i+1] ?
-                nums[i] = nums[i+1];
+                // modify nums[i]
+                if(nums[i+1] >= nums[i-1])
+                    nums[i] = nums[i+1];
+                else
+                    nums[i+1] = nums[i];
                 index = i + 1;
                 break;         
-            }
-            else if(i >= 1 && nums[i] > nums[i+1] && nums[i+1] < nums[i-1]){
-                count++;
-                // change nums[i+1] ?
-                nums[i+1] = nums[i];
-                index = i + 1;
-                break;      
             }
         }
         if(count == 1){
